@@ -35,8 +35,9 @@ function getRectangleArea(width, height) {
  *   3.14 => 19.729201864543903
  *   0    => 0
  */
-function getCircleCircumference(/* radius */) {
-  throw new Error('Not implemented');
+function getCircleCircumference(radius) {
+  const circumference = 2 * Math.PI * radius;
+  return circumference;
 }
 
 /**
@@ -51,8 +52,8 @@ function getCircleCircumference(/* radius */) {
  *  10, 0  => 5
  *  -3, 3  => 0
  */
-function getAverage(/* value1, value2 */) {
-  throw new Error('Not implemented');
+function getAverage(value1, value2) {
+  return value1 / 2 + value2 / 2;
 }
 
 /**
@@ -70,10 +71,13 @@ function getAverage(/* value1, value2 */) {
  *   (0,0) (1,0)    => 1
  *   (-5,0) (10,-10) => 18.027756377319946
  */
-function getDistanceBetweenPoints(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
-}
+function getDistanceBetweenPoints(x1, y1, x2, y2) {
+  const X = x2 - x1;
+  const Y = y2 - y1;
 
+  const distance = Math.sqrt(X ** 2 + Y ** 2);
+  return distance;
+}
 /**
  * Returns a root of linear equation a*x + b = 0 given by coefficients a and b.
  *
@@ -86,8 +90,13 @@ function getDistanceBetweenPoints(/* x1, y1, x2, y2 */) {
  *   x + 8 = 0       => -8
  *   5*x = 0         => 0
  */
-function getLinearEquationRoot(/* a, b */) {
-  throw new Error('Not implemented');
+// 5
+function getLinearEquationRoot(a, b) {
+  if (a === 0) {
+    throw new Error('Invalid input: coefficient "a" cannot be zero.');
+  }
+
+  return -b / a;
 }
 
 /**
@@ -107,8 +116,17 @@ function getLinearEquationRoot(/* a, b */) {
  *   (0,-1) (1,0)    => π/2
  *   (0,1) (0,1)     => 0
  */
-function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
+// 6
+function getAngleBetweenVectors(x1, y1, x2, y2) {
+  const dot = x1 * x2 + y1 * y2;
+  const m1 = Math.sqrt(x1 * x1 + y1 * y1);
+  const m2 = Math.sqrt(x2 * x2 + y2 * y2);
+
+  const cosAngle = dot / (m1 * m2);
+
+  const angleRadians = Math.acos(cosAngle);
+
+  return angleRadians;
 }
 
 /**
@@ -124,8 +142,9 @@ function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
  *     5     => 5
  *     0     => 0
  */
-function getLastDigit(/* value */) {
-  throw new Error('Not implemented');
+// 7
+function getLastDigit(value) {
+  return value % 10;
 }
 
 /**
@@ -139,8 +158,12 @@ function getLastDigit(/* value */) {
  *     '37'     => 37
  * '-525.5'     => -525.5
  */
-function parseNumberFromString(/* value */) {
-  throw new Error('Not implemented');
+// 8
+function parseNumberFromString(value) {
+  if (typeof value === 'string') {
+    return parseFloat(value);
+  }
+  return value;
 }
 
 /**
@@ -156,10 +179,11 @@ function parseNumberFromString(/* value */) {
  *   3,3,3   => 5.196152422706632
  *   1,2,3   => 3.741657386773941
  */
-function getParallelepipedDiagonal(/* a, b, c */) {
-  throw new Error('Not implemented');
+// 9
+function getParallelepipedDiagonal(a, b, c) {
+  const length = Math.sqrt(a ** 2 + b ** 2 + c ** 2);
+  return length;
 }
-
 /**
  * Returns the number rounded to specified power of 10.
  *
