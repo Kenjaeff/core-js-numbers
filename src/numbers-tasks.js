@@ -412,8 +412,17 @@ function numberToStringInBase(number, base) {
  * @example:
  * 12345, 2    => '1.23e+4'
  */
-function toExponential(/* number, fractionDigits */) {
-  throw new Error('Not implemented');
+// 20
+function toExponential(number, fractionDigits) {
+  if (typeof number !== 'number' || typeof fractionDigits !== 'number') {
+    throw new Error('Both inputs must be numbers');
+  }
+
+  if (fractionDigits < 0) {
+    throw new Error('Fraction digits must be a non-negative number');
+  }
+
+  return number.toExponential(fractionDigits);
 }
 
 /**
@@ -427,8 +436,14 @@ function toExponential(/* number, fractionDigits */) {
  * 12345, 2    => '12345.00'
  * 12.345, 1   => '12.3'
  */
-function toFixed(/* number, fractionDigits */) {
-  throw new Error('Not implemented');
+// 21
+function toFixed(number, fractionDigits) {
+  if (typeof number !== 'number' || typeof fractionDigits !== 'number') {
+    throw new Error('Invalid input. Both arguments must be numbers.');
+  }
+  const fixedNumber = number.toFixed(fractionDigits);
+
+  return String(fixedNumber);
 }
 
 /**
@@ -443,10 +458,15 @@ function toFixed(/* number, fractionDigits */) {
  * 12345, 7    => '12345.00'
  * 12.345, 4   => '12.35'
  */
-function toPrecision(/* number, precision */) {
-  throw new Error('Not implemented');
-}
+// 22
+function toPrecision(number, precision) {
+  if (typeof number !== 'number' || typeof precision !== 'number') {
+    throw new Error('Invalid input. Both arguments must be numbers.');
+  }
+  const precisionNumber = number.toPrecision(precision);
 
+  return String(precisionNumber);
+}
 /**
  * Returns the primitive value of a Number object.
  *
@@ -457,8 +477,20 @@ function toPrecision(/* number, precision */) {
  * new Number(5) => 5
  * Number(-5)    => -5
  */
-function getNumberValue(/* number */) {
-  throw new Error('Not implemented');
+// 23
+function getNumberValue(numberObj) {
+  if (Object.prototype.toString.call(numberObj) !== '[object Number]') {
+    throw new Error('Invalid input. Argument must be a Number object.');
+  }
+  const primitiveValue = numberObj.valueOf();
+
+  if (typeof primitiveValue !== 'number') {
+    throw new Error(
+      'Invalid input. The valueOf method did not return a number.'
+    );
+  }
+
+  return primitiveValue;
 }
 
 /**
@@ -476,8 +508,9 @@ function getNumberValue(/* number */) {
  * 5        => true
  * '5'      => false
  */
-function isNumber(/* number */) {
-  throw new Error('Not implemented');
+// 24
+function isNumber(number) {
+  return typeof number === 'number' && Number.isFinite(number);
 }
 
 /**
@@ -491,8 +524,9 @@ function isNumber(/* number */) {
  * 5.1  => false
  * '5'  => false
  */
-function isInteger(/* number */) {
-  throw new Error('Not implemented');
+// 25
+function isInteger(number) {
+  return Number.isInteger(number);
 }
 
 /**
@@ -505,8 +539,9 @@ function isInteger(/* number */) {
  * '4.567abcdefgh' => 4.567
  * 'abcdefgh'      => NaN
  */
-function getFloatOnString(/* str */) {
-  throw new Error('Not implemented');
+// 26
+function getFloatOnString(str) {
+  return Number.parseFloat(str);
 }
 
 /**
@@ -523,8 +558,9 @@ function getFloatOnString(/* str */) {
  * '1.234', 2           => 1
  * '10', 8              => 8
  */
-function getIntegerOnString(/* str, base */) {
-  throw new Error('Not implemented');
+// 27
+function getIntegerOnString(str, base) {
+  return Number.parseInt(str, base);
 }
 
 /**
@@ -538,8 +574,9 @@ function getIntegerOnString(/* str, base */) {
  * 3.5      => false
  * 2 ** 53  => false
  */
-function isSafeInteger(/* number */) {
-  throw new Error('Not implemented');
+// 28
+function isSafeInteger(number) {
+  return Number.isSafeInteger(number);
 }
 
 /**
@@ -552,8 +589,9 @@ function isSafeInteger(/* number */) {
  * 5.9  => 5
  * -5.1 => -6
  */
-function roundToSmallestInteger(/* number */) {
-  throw new Error('Not implemented');
+// 29
+function roundToSmallestInteger(number) {
+  return Math.floor(number);
 }
 
 /**
